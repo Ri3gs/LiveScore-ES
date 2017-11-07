@@ -1,10 +1,10 @@
-﻿namespace NoSqlEvents.Backend.ReadModel
+﻿namespace LiveScoreEs.Backend.ReadModel
 {
-    public enum MatchState
-    {
-        ToBePlayed = 0,
-        InProgress = 1,
-        Finished = 2,
-        Suspended = 3
-    }
+	public enum MatchState
+	{
+		ToBePlayed = 0,
+		InProgress = 1,
+		Finished = 2,
+		Suspended = 3
+	}
 }

@@ -1,13 +1,13 @@
-﻿using NoSqlEvents.Backend.ReadModel;
+﻿using LiveScoreEs.Backend.ReadModel;
 
 namespace LiveScoreEs.ViewModels.Home
 {
-    public class MatchViewModel
-    {
-        public MatchViewModel(Match m)
-        {
-            CurrentMatch = m;
-        }
-        public Match CurrentMatch { get; private set; }
-    }
+	public class MatchViewModel
+	{
+		public MatchViewModel(Match m)
+		{
+			CurrentMatch = m;
+		}
+		public Match CurrentMatch { get; }
+	}
 }

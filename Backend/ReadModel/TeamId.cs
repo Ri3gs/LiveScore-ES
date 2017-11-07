@@ -1,8 +1,8 @@
-﻿namespace NoSqlEvents.Backend.ReadModel
+﻿namespace LiveScoreEs.Backend.ReadModel
 {
-    public enum TeamId
-    {
-        Home = 1,
-        Visitors = 2
-    }
+	public enum TeamId
+	{
+		Home = 1,
+		Visitors = 2
+	}
 }

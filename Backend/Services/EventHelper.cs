@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using LiveScoreEs.Backend.ReadModel;
 using LiveScoreEs.Framework;
-using NoSqlEvents.Backend.ReadModel;
 
 namespace LiveScoreEs.Backend.Services
 {

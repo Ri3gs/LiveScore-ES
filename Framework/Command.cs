@@ -1,6 +1,6 @@
 ﻿namespace LiveScoreEs.Framework
 {
-    public class Command : Message
-    {
-    }
+	public class Command : Message
+	{
+	}
 }

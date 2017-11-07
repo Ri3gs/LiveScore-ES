@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using LiveScoreEs.Backend.DAL;
+using LiveScoreEs.Backend.ReadModel.Dto;
 using LiveScoreEs.Backend.Services;
 using LiveScoreEs.Framework;
 using LiveScoreEs.Framework.Events;
 using LiveScoreEs.ViewModels.Home;
-using NoSqlEvents.Backend.ReadModel.Dto;
 
 namespace LiveScoreEs.Services.Home
 {

@@ -10,7 +10,7 @@ namespace LiveScoreEs.Backend.DAL
 {
 	public class EventRepository
 	{
-		private IDocumentSession DocumentSession { get; set; }
+		private IDocumentSession DocumentSession { get; }
 
 		public EventRepository()
 		{
