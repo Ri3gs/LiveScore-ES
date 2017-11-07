@@ -2,13 +2,16 @@
 
 namespace LiveScoreEs.Framework
 {
-    public class DomainEvent : Message
-    {
-        public DateTime TimeStamp { get; private set; }
-        public DomainEvent()
-        {
-            TimeStamp = DateTime.Now;
-        }
-    }
+	public class DomainEvent : Message
+	{
+		public DateTime TimeStamp { get; }
+		public string EventName { get; }
+
+		public DomainEvent(string eventName)
+		{
+			EventName = eventName;
+			TimeStamp = DateTime.Now;
+		}
+	}
 
 }

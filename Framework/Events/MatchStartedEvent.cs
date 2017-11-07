@@ -4,7 +4,7 @@ namespace LiveScoreEs.Framework.Events
 {
     public class MatchStartedEvent : DomainEvent
     {
-        public MatchStartedEvent(String id)
+        public MatchStartedEvent(String id) : base("Start")
         {
             MatchId = id;
             

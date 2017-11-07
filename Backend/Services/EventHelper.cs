@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using LiveScoreEs.Framework;
-using LiveScoreEs.Framework.Events;
 using NoSqlEvents.Backend.ReadModel;
 
 namespace LiveScoreEs.Backend.Services
@@ -17,32 +16,29 @@ namespace LiveScoreEs.Backend.Services
                 if (e == null)
                     return match;
 
-                if (e is MatchStartedEvent)
-                    match.Start();
-
-                //var name = e.EventName.ToUpper();
-                //switch (name)
-                //{
-                //    case "START":
-                //        match.Start();
-                //        break;
-                //    case "END":
-                //        match.Finish();
-                //        break;
-                //    case "NEWPERIOD":
-                //        match.StartPeriod();
-                //        break;
-                //    case "ENDPERIOD":
-                //        match.EndPeriod();
-                //        break;
-                //    case "GOAL1":
-                //        match.Goal(TeamId.Home);
-                //        break;
-                //    case "GOAL2":
-                //        match.Goal(TeamId.Visitors);
-                //        break;
-                //}
-            }
+				var name = e.EventName;
+				switch (name)
+				{
+					case "Start":
+						match.Start();
+						break;
+					case "END":
+						match.Finish();
+						break;
+					case "NewPeriod":
+						match.StartPeriod();
+						break;
+					case "ENDPERIOD":
+						match.EndPeriod();
+						break;
+					case "GOAL1":
+						match.Goal(TeamId.Home);
+						break;
+					case "GOAL2":
+						match.Goal(TeamId.Visitors);
+						break;
+				}
+			}
 
             return match;
         }

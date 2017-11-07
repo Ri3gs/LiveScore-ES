@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LiveScoreEs.Framework.Events
 {
@@ -9,7 +6,7 @@ namespace LiveScoreEs.Framework.Events
 	{
 		public String MatchId { get; }
 
-		public PeriodStartedEvent(String matchId)
+		public PeriodStartedEvent(String matchId) : base("NewPeriod")
 		{
 			MatchId = matchId;
 

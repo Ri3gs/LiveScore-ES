@@ -24,8 +24,9 @@ namespace LiveScoreEs.Backend.DAL
 			if (history == null)
 				BeginHistory(domainEvent.SagaId);
 
-			DocumentSession.Store(new EventWrapper(domainEvent));
-			var key = DocumentSession.Advanced.GetDocumentId(domainEvent);
+			var eventWrapper = new EventWrapper(domainEvent);
+			DocumentSession.Store(eventWrapper);
+			var key = DocumentSession.Advanced.GetDocumentId(eventWrapper);
 			GetHistory(domainEvent.SagaId).Records.Add(key);
 			return this;
 		}

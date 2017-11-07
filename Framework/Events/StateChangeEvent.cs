@@ -1,16 +1,12 @@
-﻿using LiveScoreEs.Framework;
-
-namespace LiveScoreEs.Framework.Events
+﻿namespace LiveScoreEs.Framework.Events
 {
 	public class StateChangeEvent : DomainEvent
 	{
 		private string id;
-		private string eventName;
 
-		public StateChangeEvent(string id, string eventName)
+		public StateChangeEvent(string id, string eventName) : base(eventName)
 		{
 			this.id = id;
-			this.eventName = eventName;
 		}
 	}
 }
