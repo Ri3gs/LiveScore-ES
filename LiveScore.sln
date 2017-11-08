@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore-ES", "src\LiveScore-ES\LiveScore-ES.csproj", "{A87EE6F1-36B7-4BCF-8DD7-CBA00CB3AA86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore", "src\LiveScore\LiveScore.csproj", "{A87EE6F1-36B7-4BCF-8DD7-CBA00CB3AA86}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore-ES.Stream", "src\LiveScore-ES.Stream\LiveScore-ES.Stream.csproj", "{BCB86ED1-D72C-4926-945F-A359D2F0228D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Stream", "src\LiveScore.Stream\LiveScore.Stream.csproj", "{BCB86ED1-D72C-4926-945F-A359D2F0228D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{66D38CAB-D1CB-49E7-AC60-1EF43DDFAA03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9C1B65ED-8766-4380-B87C-6CE18B97224C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E02A4EE8-37B7-4EA5-9B2D-EB5382148F02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{D1B68103-F613-4C89-8728-540977EBAE06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Application", "src\LiveScore.Application\LiveScore.Application.csproj", "{FFED392C-63DE-4473-BBC1-FB481FE30E87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,13 +31,20 @@ Global
 		{BCB86ED1-D72C-4926-945F-A359D2F0228D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCB86ED1-D72C-4926-945F-A359D2F0228D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCB86ED1-D72C-4926-945F-A359D2F0228D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFED392C-63DE-4473-BBC1-FB481FE30E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFED392C-63DE-4473-BBC1-FB481FE30E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFED392C-63DE-4473-BBC1-FB481FE30E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFED392C-63DE-4473-BBC1-FB481FE30E87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A87EE6F1-36B7-4BCF-8DD7-CBA00CB3AA86} = {66D38CAB-D1CB-49E7-AC60-1EF43DDFAA03}
-		{BCB86ED1-D72C-4926-945F-A359D2F0228D} = {66D38CAB-D1CB-49E7-AC60-1EF43DDFAA03}
+		{BCB86ED1-D72C-4926-945F-A359D2F0228D} = {E02A4EE8-37B7-4EA5-9B2D-EB5382148F02}
+		{E02A4EE8-37B7-4EA5-9B2D-EB5382148F02} = {66D38CAB-D1CB-49E7-AC60-1EF43DDFAA03}
+		{D1B68103-F613-4C89-8728-540977EBAE06} = {66D38CAB-D1CB-49E7-AC60-1EF43DDFAA03}
+		{FFED392C-63DE-4473-BBC1-FB481FE30E87} = {D1B68103-F613-4C89-8728-540977EBAE06}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3B55F53-C418-4B62-A1A1-D945B032C2BC}

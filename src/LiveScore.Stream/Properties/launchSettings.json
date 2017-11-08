@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "LiveScore_ES.Stream": {
+    "LiveScore.Stream": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
