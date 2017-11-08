@@ -177,6 +177,7 @@
     <Compile Include="App_Start\SagaConfig.cs" />
     <Compile Include="Backend\DAL\EventRepository.cs" />
     <Compile Include="Backend\DAL\EventWrapper.cs" />
+    <Compile Include="Backend\DAL\IEventRepository.cs" />
     <Compile Include="Framework\Events\StateChangeEvent.cs" />
     <Compile Include="Backend\DAL\WaterpoloContext.cs" />
     <Compile Include="Backend\ReadModel\Dto\LiveMatch.cs" />
@@ -206,6 +207,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Home\HomeService.cs" />
+    <Compile Include="Services\Home\IHomeService.cs" />
+    <Compile Include="Services\Live\ILiveService.cs" />
     <Compile Include="Services\Live\LiveService.cs" />
     <Compile Include="ViewModels\Home\MatchViewModel.cs" />
   </ItemGroup>

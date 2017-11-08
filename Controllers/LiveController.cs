@@ -6,12 +6,12 @@ namespace LiveScoreEs.Controllers
 {
 	public class LiveController : Controller
 	{
-		private readonly LiveService _service;
+		private readonly ILiveService _service;
 
 		public LiveController() : this(new LiveService())
 		{
 		}
-		public LiveController(LiveService service)
+		public LiveController(ILiveService service)
 		{
 			_service = service;
 		}

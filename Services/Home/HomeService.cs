@@ -9,8 +9,20 @@ using LiveScoreEs.ViewModels.Home;
 
 namespace LiveScoreEs.Services.Home
 {
-	public class HomeService
+	public class HomeService : IHomeService
 	{
+		private readonly IEventRepository _eventRepository;
+
+		//TODO: for the time being just use poor mans injection
+		public HomeService() : this(new EventRepository())
+		{
+		}
+
+		public HomeService(IEventRepository eventRepository)
+		{
+			_eventRepository = eventRepository;
+		}
+
 		public void DispatchCommand(String matchId, String eventName)
 		{
 			//// Log event unless it is UNDO
@@ -38,12 +50,6 @@ namespace LiveScoreEs.Services.Home
 
 			Bus.Send(domainEvent);
 
-			//if (eventName == "start")
-			//{
-			//    var domainEvent = new MatchStartedEvent(matchId);
-			//    Bus.Send(domainEvent);
-			//}
-
 			//if (eventName == "Undo")
 			//    repo.UndoLastAction(matchId);
 			//else
@@ -56,16 +62,14 @@ namespace LiveScoreEs.Services.Home
 
 		public MatchViewModel GetCurrentState(String matchId)
 		{
-			var repo = new EventRepository();
-			var events = repo.GetEventStreamFor(matchId);
+			var events = _eventRepository.GetEventStreamFor(matchId);
 			var matchInfo = EventHelper.PlayEvents(matchId, events.ToList());
 			return new MatchViewModel(matchInfo);
 		}
 
 		private void UpdateSnapshots(String matchId)
 		{
-			var repo = new EventRepository();
-			var events = repo.GetEventStreamFor(matchId);
+			var events = _eventRepository.GetEventStreamFor(matchId);
 			var matchInfo = EventHelper.PlayEvents(matchId, events.ToList());
 
 			using (var db = new WaterpoloContext())

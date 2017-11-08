@@ -8,7 +8,7 @@ using LiveScoreEs.Framework.Events;
 
 namespace LiveScoreEs.Backend.DAL
 {
-	public class EventRepository
+	public class EventRepository : IEventRepository
 	{
 		private IDocumentSession DocumentSession { get; }
 

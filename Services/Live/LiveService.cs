@@ -5,7 +5,7 @@ using LiveScoreEs.Backend.ReadModel.Dto;
 
 namespace LiveScoreEs.Services.Live
 {
-	public class LiveService
+	public class LiveService : ILiveService
 	{
 		public LiveMatch GetLiveMatch(String matchId)
 		{

@@ -7,12 +7,12 @@ namespace LiveScoreEs.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly HomeService _service;
+		private readonly IHomeService _service;
 
 		public HomeController() : this(new HomeService())
 		{
 		}
-		public HomeController(HomeService service)
+		public HomeController(IHomeService service)
 		{
 			_service = service;
 		}
