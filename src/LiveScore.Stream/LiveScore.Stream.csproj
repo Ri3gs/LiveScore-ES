@@ -14,7 +14,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LiveScore.Application\LiveScore.Application.csproj" />
+    <ProjectReference Include="..\LiveScore.QueryStack\LiveScore.QueryStack.csproj" />
   </ItemGroup>
 
 </Project>

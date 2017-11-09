@@ -5,7 +5,6 @@ using LiveScore.CommandStack;
 using LiveScore.CommandStack.Events;
 using LiveScore.Framework;
 using Raven.Client;
-using Microsoft.Extensions.Configuration;
 using Raven.Client.Document;
 
 namespace LiveScore.Infrastructure

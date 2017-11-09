@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore", "src\LiveScore\LiveScore.csproj", "{A87EE6F1-36B7-4BCF-8DD7-CBA00CB3AA86}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Stream", "src\LiveScore.Stream\LiveScore.Stream.csproj", "{BCB86ED1-D72C-4926-945F-A359D2F0228D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{66D38CAB-D1CB-49E7-AC60-1EF43DDFAA03}"
@@ -19,15 +17,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Application", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Web", "src\LiveScore.Web\LiveScore.Web.csproj", "{39D29277-0682-4E3C-B42E-BEBA1F4DE3E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.QueryStack", "src\LiveScore.QueryStack\LiveScore.QueryStack.csproj", "{3AB031F8-E16B-42F8-B0F4-A976F250CF04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.QueryStack", "src\LiveScore.QueryStack\LiveScore.QueryStack.csproj", "{3AB031F8-E16B-42F8-B0F4-A976F250CF04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.CommandStack", "src\LiveScore.CommandStack\LiveScore.CommandStack.csproj", "{671ECDA3-8286-419E-A8AA-67447E293C41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.CommandStack", "src\LiveScore.CommandStack\LiveScore.CommandStack.csproj", "{671ECDA3-8286-419E-A8AA-67447E293C41}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{96ADBA2D-313B-4BA5-9DCE-E42228B9212E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Infrastructure", "src\LiveScore.Infrastructure\LiveScore.Infrastructure.csproj", "{CC453F27-CD39-4A44-BF6E-2C4B4A5F1550}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Infrastructure", "src\LiveScore.Infrastructure\LiveScore.Infrastructure.csproj", "{CC453F27-CD39-4A44-BF6E-2C4B4A5F1550}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveScore.Framework", "src\LiveScore.Framework\LiveScore.Framework.csproj", "{4A796BFC-9668-4339-96A9-057D363140F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveScore.Framework", "src\LiveScore.Framework\LiveScore.Framework.csproj", "{4A796BFC-9668-4339-96A9-057D363140F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A87EE6F1-36B7-4BCF-8DD7-CBA00CB3AA86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A87EE6F1-36B7-4BCF-8DD7-CBA00CB3AA86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A87EE6F1-36B7-4BCF-8DD7-CBA00CB3AA86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A87EE6F1-36B7-4BCF-8DD7-CBA00CB3AA86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCB86ED1-D72C-4926-945F-A359D2F0228D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BCB86ED1-D72C-4926-945F-A359D2F0228D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCB86ED1-D72C-4926-945F-A359D2F0228D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -72,7 +66,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A87EE6F1-36B7-4BCF-8DD7-CBA00CB3AA86} = {66D38CAB-D1CB-49E7-AC60-1EF43DDFAA03}
 		{BCB86ED1-D72C-4926-945F-A359D2F0228D} = {E02A4EE8-37B7-4EA5-9B2D-EB5382148F02}
 		{E02A4EE8-37B7-4EA5-9B2D-EB5382148F02} = {66D38CAB-D1CB-49E7-AC60-1EF43DDFAA03}
 		{D1B68103-F613-4C89-8728-540977EBAE06} = {66D38CAB-D1CB-49E7-AC60-1EF43DDFAA03}
