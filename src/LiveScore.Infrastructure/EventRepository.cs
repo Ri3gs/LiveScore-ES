@@ -5,6 +5,8 @@ using LiveScore.CommandStack;
 using LiveScore.CommandStack.Events;
 using LiveScore.Framework;
 using Raven.Client;
+using Microsoft.Extensions.Configuration;
+using Raven.Client.Document;
 
 namespace LiveScore.Infrastructure
 {
@@ -14,7 +16,12 @@ namespace LiveScore.Infrastructure
 
 		public EventRepository()
 		{
-			DocumentSession = RavenDbConfig.Instance.OpenSession();
+			//TODO: this is a hack
+			DocumentSession = new DocumentStore
+			{
+				Url = "http://localhost:9666",
+				DefaultDatabase = "LiveScore"
+			}.Initialize().OpenSession();
 		}
 
 		public IEventRepository Save(DomainEvent domainEvent)

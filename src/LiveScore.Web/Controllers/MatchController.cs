@@ -5,60 +5,51 @@ using LiveScore.Application.Services.Match;
 
 namespace LiveScore.Web.Controllers
 {
-    public class MatchController : Controller
-    {
-	    private readonly IMatchControllerService _service;
+	public class MatchController : Controller
+	{
+		private readonly IMatchControllerService _service;
 
-	    public MatchController(IMatchControllerService service)
-	    {
-		    _service = service;
-	    }
+		public MatchController(IMatchControllerService service)
+		{
+			_service = service;
+		}
 
-	    public IActionResult Index(String id)
-	    {
-		    id = id ?? "WP001";
-		    var model = _service.GetCurrentState(id);
-		    return View(model);
-	    }
+		public IActionResult Index(String id)
+		{
+			id = id ?? "WP001";
+			var model = _service.GetCurrentState(id);
+			return View(model);
+		}
 
-	    public IActionResult Action(String id)
-	    {
-		    var eventName = MakeSenseOfWhatTheUserDid(Request);
+		public IActionResult Action(String id)
+		{
+			var eventName = MakeSenseOfWhatTheUserDid(Request);
 
-		    // Perform action here
-		    _service.DispatchCommand(id, eventName);
+			// Perform action here
+			_service.DispatchCommand(id, eventName);
 
-		    return RedirectToAction("index", new { id = id });
-	    }
+			return RedirectToAction("index", new { id = id });
+		}
 
-	    private String MakeSenseOfWhatTheUserDid(HttpRequest request)
-	    {
-		    String buffer = "Start";
-		    //buffer = request.["btnStart"];
-		    //if (buffer != null) return "Start";
+		private String MakeSenseOfWhatTheUserDid(HttpRequest request)
+		{
+			if (request.Form.ContainsKey("btnStart")) return "Start";
 
-		    //buffer = request.Params["btnEnd"];
-		    //if (buffer != null) return "End";
+			if (request.Form.ContainsKey("btnStart")) return "End";
 
-		    //buffer = request.Params["btnNewPeriod"];
-		    //if (buffer != null) return "NewPeriod";
+			if (request.Form.ContainsKey("btnNewPeriod")) return "NewPeriod";
 
-		    //buffer = request.Params["btnEndPeriod"];
-		    //if (buffer != null) return "EndPeriod";
+			if (request.Form.ContainsKey("btnEndPeriod")) return "EndPeriod";
 
-		    //buffer = request.Params["btnGoal1"];
-		    //if (buffer != null) return "Goal1";
+			if (request.Form.ContainsKey("btnGoal1")) return "Goal1";
 
-		    //buffer = request.Params["btnGoal2"];
-		    //if (buffer != null) return "Goal2";
+			if (request.Form.ContainsKey("btnGoal2")) return "Goal2";
 
-		    //buffer = request.Params["btnUndo"];
-		    //if (buffer != null) return "Undo";
+			if (request.Form.ContainsKey("btnUndo")) return "Undo";
 
-		    //buffer = request.Params["btnZap"];
-		    //if (buffer != null) return "Zap";
+			if (request.Form.ContainsKey("btnZap")) return "Zap";
 
-		    return buffer;
-	    }
+			throw new InvalidOperationException("What just user did makes no sense!");
+		}
 	}
 }

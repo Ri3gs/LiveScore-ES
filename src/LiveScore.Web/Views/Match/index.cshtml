@@ -1,4 +1,4 @@
-﻿@model LiveScoreEs.ViewModels.Home.MatchViewModel
+﻿@model LiveScore.Application.Services.Match.MatchViewModel
 
 <style>
     body {
@@ -37,7 +37,7 @@
         </div>
 
         <div class="panel-footer">
-            @using (Html.BeginForm("Action", "Home"))
+            @using (Html.BeginForm("Action", "Match"))
             {
                 <input type="hidden" name="id" value="@Model.CurrentMatch.Id" />
                 <div class="btn-group">

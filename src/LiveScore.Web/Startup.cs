@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using LiveScore.Application.Services.Match;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace LiveScore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+			services.AddTransient<IMatchControllerService, MatchControllerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
