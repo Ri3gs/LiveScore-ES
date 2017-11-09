@@ -44,7 +44,7 @@ namespace LiveScore.Stream
 			{
 				routes.MapRoute(
 					name: "default",
-					template: "{controller=Home}/{action=Index}/{id?}");
+					template: "{controller=Live}/{action=Index}/{id?}");
 			});
 		}
 	}
