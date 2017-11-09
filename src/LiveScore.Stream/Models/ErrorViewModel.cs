@@ -1,6 +1,4 @@
-using System;
-
-namespace LiveScore_ES.Stream.Models
+namespace LiveScore.Stream.Models
 {
     public class ErrorViewModel
     {

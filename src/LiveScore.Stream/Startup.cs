@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using LiveScore.Application.Services.Live;
+using LiveScore.Infrastructure;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using LiveScoreEs.Services.Live;
-using LiveScoreEs.Backend.DAL;
-using Microsoft.EntityFrameworkCore;
 
-namespace LiveScore_ES.Stream
+namespace LiveScore.Stream
 {
 	public class Startup
 	{
@@ -20,7 +20,7 @@ namespace LiveScore_ES.Stream
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddTransient<ILiveService, LiveService>();
+			services.AddTransient<ILiveControllerService, LiveControllerService>();
 			services.AddDbContext<WaterpoloContext>(options => options.UseSqlServer(Configuration.GetConnectionString("naa4e_Waterpolo")));
 			services.AddMvc();
 		}

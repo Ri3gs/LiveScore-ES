@@ -1,9 +1,9 @@
-﻿using LiveScoreEs.Backend.DAL;
-using LiveScoreEs.Backend.ReadModel.Dto;
-using System;
+﻿using System;
 using System.Linq;
+using LiveScore.Infrastructure;
+using LiveScore.QueryStack;
 
-namespace LiveScoreES.Application.Services.Live
+namespace LiveScore.Application.Services.Live
 {
 	public class LiveControllerService : ILiveControllerService
 	{

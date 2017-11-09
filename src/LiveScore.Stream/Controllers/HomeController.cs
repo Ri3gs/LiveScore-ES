@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using LiveScore.Stream.Models;
 using Microsoft.AspNetCore.Mvc;
-using LiveScore_ES.Stream.Models;
 
-namespace LiveScore_ES.Stream.Controllers
+namespace LiveScore.Stream.Controllers
 {
     public class HomeController : Controller
     {

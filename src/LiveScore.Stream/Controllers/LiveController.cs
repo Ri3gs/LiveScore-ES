@@ -1,14 +1,14 @@
-﻿using LiveScoreEs.Services.Live;
+﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using LiveScore.Application.Services.Live;
 
-namespace LiveScore_ES.Stream.Controllers
+namespace LiveScore.Stream.Controllers
 {
 	public class LiveController : Controller
 	{
-		private readonly ILiveService _service;
+		private readonly ILiveControllerService _service;
 
-		public LiveController(ILiveService service)
+		public LiveController(ILiveControllerService service)
 		{
 			_service = service;
 		}

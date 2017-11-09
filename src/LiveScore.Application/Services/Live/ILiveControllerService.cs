@@ -1,7 +1,7 @@
-﻿using LiveScoreEs.Backend.ReadModel.Dto;
-using System;
+﻿using System;
+using LiveScore.QueryStack;
 
-namespace LiveScoreES.Application.Services.Live
+namespace LiveScore.Application.Services.Live
 {
 	public interface ILiveControllerService
 	{

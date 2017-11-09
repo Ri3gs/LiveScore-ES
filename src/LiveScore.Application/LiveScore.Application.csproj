@@ -9,7 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LiveScore\LiveScore.csproj" />
+    <ProjectReference Include="..\LiveScore.CommandStack\LiveScore.CommandStack.csproj" />
+    <ProjectReference Include="..\LiveScore.Framework\LiveScore.Framework.csproj" />
+    <ProjectReference Include="..\LiveScore.Infrastructure\LiveScore.Infrastructure.csproj" />
+    <ProjectReference Include="..\LiveScore.QueryStack\LiveScore.QueryStack.csproj" />
   </ItemGroup>
 
 </Project>
