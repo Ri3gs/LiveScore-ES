@@ -21,7 +21,7 @@ namespace LiveScore.CommandStack
 					case "Start":
 						match.Start();
 						break;
-					case "END":
+					case "End":
 						match.Finish();
 						break;
 					case "NewPeriod":
@@ -30,7 +30,7 @@ namespace LiveScore.CommandStack
 					case "ENDPERIOD":
 						match.EndPeriod();
 						break;
-					case "GOAL1":
+					case "Goal1":
 						match.Goal(TeamId.Home);
 						break;
 					case "GOAL2":

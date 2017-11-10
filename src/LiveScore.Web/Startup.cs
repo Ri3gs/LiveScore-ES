@@ -1,6 +1,8 @@
 ﻿using LiveScore.Application.Services.Match;
+using LiveScore.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +22,7 @@ namespace LiveScore.Web
 		{
 			services.AddMvc();
 			services.AddTransient<IMatchControllerService, MatchControllerService>();
+			services.AddDbContext<WaterpoloContext>(options => options.UseSqlServer(Configuration.GetConnectionString("naa4e_Waterpolo")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +46,7 @@ namespace LiveScore.Web
 					name: "default",
 					template: "{controller=Match}/{action=Index}/{id?}");
 			});
-			//BusConfig.Initialize();
+			BusConfig.Initialize();
 			//RavenDbConfig.Initialize();
 		}
 	}

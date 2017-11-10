@@ -44,13 +44,13 @@
                 </tr>
                 <tr>
                     <td class="team-name"><span>@Model.Team1.ToUpper()</span></td>
-                    <td class="team-score"><span id="g1">@Model.CurrentScore.TotalGoals1</span></td>
+                    <td class="team-score"><span id="g1">@Model.TotalGoals1</span></td>
                     <td rowspan="2"><span class="period" id="cp">@Model.CurrentPeriod</span></td>
                     <td rowspan="2" id="play">@Model.IsBallInPlay</td>
                 </tr>
                 <tr>
                     <td class="team-name"><span>@Model.Team2.ToUpper()</span></td>
-                    <td class="team-score"><span id="g2">@Model.CurrentScore.TotalGoals2</span></td>
+                    <td class="team-score"><span id="g2">@Model.TotalGoals2</span></td>
                 </tr>
             </table>
         </div>
@@ -63,11 +63,11 @@
         $.ajax({
             url: "/live/match/@Model.Id",
             cache: false
-        }).done(function (data) {
-            $("#g1").html(data.CurrentScore.TotalGoals1);
-            $("#g2").html(data.CurrentScore.TotalGoals2);
-            $("#cp").html(data.CurrentPeriod);
-            $("#play").html(data.IsBallInPlay);
+		}).done(function (data) {
+            $("#g1").html(data.totalGoals1);
+            $("#g2").html(data.totalGoals2);
+            $("#cp").html(data.currentPeriod);
+            $("#play").html(data.isBallInPlay);
         });
     }, 2000);
 </script>

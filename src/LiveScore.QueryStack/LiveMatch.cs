@@ -8,15 +8,17 @@ namespace LiveScore.QueryStack
 		{
 			Id = "";
 			State = MatchState.ToBePlayed;
-			CurrentScore = new Score();
 			IsBallInPlay = false;
 			CurrentPeriod = 0;
+			Team1 = "Home";
+			Team2 = "Visitors";
 		}
 
 		public String Id { get; set; }
 		public String Team1 { get; set; }
 		public String Team2 { get; set; }
-		public Score CurrentScore { get; set; }
+		public int TotalGoals1 { get; set; }
+		public int TotalGoals2 { get; set; }
 		public Boolean IsBallInPlay { get; set; }
 		public Int32 CurrentPeriod { get; set; }
 		public Int32 TimeInPeriod { get; set; }
