@@ -5,7 +5,7 @@ namespace LiveScore.CommandStack.Events
 {
 	public class MatchStartedEvent : DomainEvent
 	{
-		public MatchStartedEvent(String id) : base("Start")
+		public MatchStartedEvent(String id)
 		{
 			MatchId = id;
 

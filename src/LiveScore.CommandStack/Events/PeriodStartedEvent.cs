@@ -7,7 +7,7 @@ namespace LiveScore.CommandStack.Events
 	{
 		public String MatchId { get; }
 
-		public PeriodStartedEvent(String matchId) : base("NewPeriod")
+		public PeriodStartedEvent(String matchId)
 		{
 			MatchId = matchId;
 

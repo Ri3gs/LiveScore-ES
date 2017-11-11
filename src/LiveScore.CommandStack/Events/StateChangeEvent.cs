@@ -6,7 +6,7 @@ namespace LiveScore.CommandStack.Events
 	{
 		private string id;
 
-		public StateChangeEvent(string id, string eventName) : base(eventName)
+		public StateChangeEvent(string id)
 		{
 			this.id = id;
 		}

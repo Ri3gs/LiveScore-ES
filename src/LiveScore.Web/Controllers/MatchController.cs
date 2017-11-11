@@ -35,7 +35,7 @@ namespace LiveScore.Web.Controllers
 		{
 			if (request.Form.ContainsKey("btnStart")) return "Start";
 
-			if (request.Form.ContainsKey("btnStart")) return "End";
+			if (request.Form.ContainsKey("btnEnd")) return "End";
 
 			if (request.Form.ContainsKey("btnNewPeriod")) return "NewPeriod";
 

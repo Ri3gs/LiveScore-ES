@@ -8,6 +8,8 @@ namespace LiveScore.CommandStack.Sagas
 		IStartWithMessage<MatchStartedEvent>,
 		ICanHandleMessage<PeriodStartedEvent>,
 		ICanHandleMessage<HomeScoredGoalEvent>,
+		ICanHandleMessage<VisitorsScoredGoalEvent>,
+		ICanHandleMessage<PeriodEndedEvent>,
 		ICanHandleMessage<EndMatchCommand>
 	{
 		private readonly IEventRepository _repo;
@@ -31,10 +33,19 @@ namespace LiveScore.CommandStack.Sagas
 		public void Handle(PeriodStartedEvent message)
 		{
 			_repo.Save(message);
-			//_repo.RecordEvent(message.MatchId, "NewPeriod");
 		}
 
 		public void Handle(HomeScoredGoalEvent message)
+		{
+			_repo.Save(message);
+		}
+
+		public void Handle(VisitorsScoredGoalEvent message)
+		{
+			_repo.Save(message);
+		}
+
+		public void Handle(PeriodEndedEvent message)
 		{
 			_repo.Save(message);
 		}

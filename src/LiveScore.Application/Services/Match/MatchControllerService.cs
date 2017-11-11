@@ -50,6 +50,15 @@ namespace LiveScore.Application.Services.Match
 				case "Goal1":
 					domainEvent = new HomeScoredGoalEvent(matchId);
 					break;
+				case "Goal2":
+					domainEvent = new VisitorsScoredGoalEvent(matchId);
+					break;
+				case "EndPeriod":
+					domainEvent = new PeriodEndedEvent(matchId);
+					break;
+				case "End":
+					domainEvent = new MatchEndedEvent(matchId);
+					break;
 			}
 
 			Bus.Send(domainEvent);

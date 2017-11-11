@@ -39,7 +39,7 @@ namespace LiveScore.Infrastructure
 
 		public void RecordEvent(String id, String eventName)
 		{
-			var newEvent = new StateChangeEvent(id, eventName);
+			var newEvent = new StateChangeEvent(id);
 			DocumentSession.Store(newEvent);
 			var key = DocumentSession.Advanced.GetDocumentId(newEvent);
 			GetHistory(id).Records.Add(key);

@@ -1,45 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using LiveScore.CommandStack.Events;
 using LiveScore.Framework;
 
 namespace LiveScore.CommandStack
 {
-    public class EventHelper
-    {
-        public static Match PlayEvents(String id, IList<DomainEvent> events)
-        {
-            var match = new Match(id);
+	public class EventHelper
+	{
+		public static Match PlayEvents(String id, IList<DomainEvent> events)
+		{
+			var match = new Match(id);
 
-            foreach (var e in events)
-            {
-                if (e == null)
-                    return match;
+			foreach (var e in events)
+			{
+				if (e == null)
+					return match;
 
-				var name = e.EventName;
-				switch (name)
+				switch (e)
 				{
-					case "Start":
+					case MatchStartedEvent msg:
 						match.Start();
 						break;
-					case "End":
+					case MatchEndedEvent msg:
 						match.Finish();
 						break;
-					case "NewPeriod":
+					case PeriodStartedEvent msg:
 						match.StartPeriod();
 						break;
-					case "ENDPERIOD":
+					case PeriodEndedEvent msg:
 						match.EndPeriod();
 						break;
-					case "Goal1":
+					case HomeScoredGoalEvent msg:
 						match.Goal(TeamId.Home);
 						break;
-					case "GOAL2":
+					case VisitorsScoredGoalEvent msg:
 						match.Goal(TeamId.Visitors);
 						break;
 				}
 			}
 
-            return match;
-        }
-    }
+			return match;
+		}
+	}
 }

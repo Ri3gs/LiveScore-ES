@@ -7,7 +7,7 @@ namespace LiveScore.CommandStack.Events
 	{
 		public String MatchId { get; }
 
-		public HomeScoredGoalEvent(String matchId) : base("Goal1")
+		public HomeScoredGoalEvent(String matchId)
 		{
 			MatchId = matchId;
 
