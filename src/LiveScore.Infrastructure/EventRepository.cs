@@ -50,7 +50,6 @@ namespace LiveScore.Infrastructure
 			var history = new MatchHistory(matchId);
 			DocumentSession.Store(history);
 			DocumentSession.SaveChanges();
-			//return history;
 		}
 
 		private MatchHistory GetHistory(String matchId)
@@ -109,6 +108,11 @@ namespace LiveScore.Infrastructure
 		public void Empty(String id)
 		{
 			MatchHistory history = DocumentSession.Load<MatchHistory>(id);
+
+			if (history == null)
+			{
+				return;
+			}
 
 			EventWrapper[] events = DocumentSession.Load<EventWrapper>(history.Records);
 			foreach (var @event in events)

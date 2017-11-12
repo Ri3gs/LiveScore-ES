@@ -1,5 +1,6 @@
 ﻿using LiveScore.Application.Services.Match;
 using LiveScore.Infrastructure;
+using LiveScore.Framework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace LiveScore.Web
 		{
 			services.AddMvc();
 			services.AddTransient<IMatchControllerService, MatchControllerService>();
+			services.AddTransient<IEventRepository, EventRepository>();
 			services.AddDbContext<WaterpoloContext>(options => options.UseSqlServer(Configuration.GetConnectionString("naa4e_Waterpolo")));
 		}
 

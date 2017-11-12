@@ -13,11 +13,6 @@ namespace LiveScore.Application.Services.Match
 		private readonly IEventRepository _eventRepository;
 		private readonly WaterpoloContext _dbContext;
 
-		//TODO: for the time being just use poor mans injection
-		public MatchControllerService(WaterpoloContext dbContext) : this(new EventRepository(), dbContext)
-		{
-		}
-
 		public MatchControllerService(IEventRepository eventRepository, WaterpoloContext dbContext)
 		{
 			_eventRepository = eventRepository;
