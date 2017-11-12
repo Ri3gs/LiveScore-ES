@@ -52,7 +52,6 @@ namespace LiveScore.CommandStack.Sagas
 
 		public void Handle(EndMatchCommand message)
 		{
-
 		}
 	}
 }

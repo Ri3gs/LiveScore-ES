@@ -24,17 +24,16 @@ namespace LiveScore.Application.Services.Match
 			_dbContext = dbContext;
 		}
 
-		public void DispatchCommand(String matchId, String eventName)
+		public void DispatchCommand(string matchId, string eventName)
 		{
-			//// Log event unless it is UNDO
-			//var repo = new EventRepository();
+			// Log event unless it is UNDO
 
-			//if (eventName == "Zap")
-			//{
-			//    repo.Empty(matchId);
-			//    ZapSnapshots(matchId);
-			//    return;
-			//}
+			if (eventName == "Zap")
+			{
+				_eventRepository.Empty(matchId);
+				ZapSnapshots(matchId);
+				return;
+			}
 
 			//TODO: this is a dirty hack
 			DomainEvent domainEvent = default(DomainEvent);
@@ -114,17 +113,14 @@ namespace LiveScore.Application.Services.Match
 			_dbContext.SaveChanges();
 		}
 
-		//private void ZapSnapshots(String matchId)
-		//{
-		//	using (var db = new WaterpoloContext())
-		//	{
-		//		var lm = (from m in db.Matches where m.Id == matchId select m).FirstOrDefault();
-		//		if (lm != null)
-		//		{
-		//			db.Matches.Remove(lm);
-		//		}
-		//		db.SaveChanges();
-		//	}
-		//}
+		private void ZapSnapshots(String matchId)
+		{
+			var lm = (from m in _dbContext.Matches where m.Id == matchId select m).FirstOrDefault();
+			if (lm != null)
+			{
+				_dbContext.Matches.Remove(lm);
+			}
+			_dbContext.SaveChanges();
+		}
 	}
 }

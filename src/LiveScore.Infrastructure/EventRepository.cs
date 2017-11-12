@@ -108,17 +108,19 @@ namespace LiveScore.Infrastructure
 
 		public void Empty(String id)
 		{
-			var records = GetEventStreamFor(id);
-			foreach (var r in records)
-			{
-				if (r != null)
-					DocumentSession.Delete(r);
-			}
-			var history = GetHistory(id);
-			if (history != null)
-				DocumentSession.Delete(history);
-			DocumentSession.SaveChanges();
+			MatchHistory history = DocumentSession.Load<MatchHistory>(id);
 
+			EventWrapper[] events = DocumentSession.Load<EventWrapper>(history.Records);
+			foreach (var @event in events)
+			{
+				if (@event != null)
+				{
+					DocumentSession.Delete(@event);
+				}
+			}
+
+			DocumentSession.Delete(history);
+			DocumentSession.SaveChanges();
 			//RavenDbConfig.Instance.DatabaseCommands.DeleteByIndex(
 			//    RavenDbConfig.MyDefaultIndex, new IndexQuery());
 		}
