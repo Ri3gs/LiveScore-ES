@@ -21,12 +21,17 @@ namespace LiveScore.Application.Services.Match
 
 		public void DispatchCommand(string matchId, string eventName)
 		{
-			// Log event unless it is UNDO
-
 			if (eventName == "Zap")
 			{
 				_eventRepository.Empty(matchId);
 				ZapSnapshots(matchId);
+				return;
+			}
+
+			if (eventName == "Undo")
+			{
+				_eventRepository.UndoLastAction(matchId);
+				UpdateSnapshots(matchId);
 				return;
 			}
 
@@ -56,14 +61,6 @@ namespace LiveScore.Application.Services.Match
 			}
 
 			Bus.Send(domainEvent);
-
-			//if (eventName == "Undo")
-			//    repo.UndoLastAction(matchId);
-			//else
-			//    repo.RecordEvent(matchId, eventName);
-			//repo.Commit();
-
-			// Update snapshot for live scoring
 			UpdateSnapshots(matchId);
 		}
 

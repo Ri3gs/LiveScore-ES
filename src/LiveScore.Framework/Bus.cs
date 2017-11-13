@@ -37,7 +37,7 @@ namespace LiveScore.Framework
 			if (message is DomainEvent)
 			{
 				// Persist the event
-				EventRepository.Save(message as DomainEvent).Commit();
+				EventRepository.Save(message as DomainEvent);
 
 				// Invoke all registered sagas and give each 
 				// a chance to handle the event.

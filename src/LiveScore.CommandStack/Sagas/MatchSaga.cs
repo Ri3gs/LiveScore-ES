@@ -21,13 +21,8 @@ namespace LiveScore.CommandStack.Sagas
 
 		public void Handle(MatchStartedEvent message)
 		{
-			// This code only serves the purpose of the RavenDB example here. 
-			_repo.BeginHistory(message.MatchId);
-			// Persist the event
-			_repo.Save(message).Commit();
-
-			// Set the ID of the saga
 			SagaId = message.MatchId;
+			_repo.Save(message);
 		}
 
 		public void Handle(PeriodStartedEvent message)

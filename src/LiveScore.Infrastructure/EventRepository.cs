@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using LiveScore.CommandStack;
-using LiveScore.CommandStack.Events;
 using LiveScore.Framework;
 using Raven.Client;
 using Raven.Client.Document;
@@ -11,122 +10,103 @@ namespace LiveScore.Infrastructure
 {
 	public class EventRepository : IEventRepository
 	{
-		private IDocumentSession DocumentSession { get; }
+		private readonly IDocumentStore _documentStore;
 
 		public EventRepository()
 		{
 			//TODO: this is a hack
-			DocumentSession = new DocumentStore
+			_documentStore = new DocumentStore
 			{
 				Url = "http://localhost:9666",
 				DefaultDatabase = "LiveScore"
-			}.Initialize().OpenSession();
+			}.Initialize();
 		}
 
-		public IEventRepository Save(DomainEvent domainEvent)
+		public void Save(DomainEvent domainEvent)
 		{
-			// We can do this from within a start command; or here if we start with an event.
-			var history = GetHistory(domainEvent.SagaId);
-			if (history == null)
-				BeginHistory(domainEvent.SagaId);
-
-			var eventWrapper = new EventWrapper(domainEvent);
-			DocumentSession.Store(eventWrapper);
-			var key = DocumentSession.Advanced.GetDocumentId(eventWrapper);
-			GetHistory(domainEvent.SagaId).Records.Add(key);
-			return this;
-		}
-
-		public void RecordEvent(String id, String eventName)
-		{
-			var newEvent = new StateChangeEvent(id);
-			DocumentSession.Store(newEvent);
-			var key = DocumentSession.Advanced.GetDocumentId(newEvent);
-			GetHistory(id).Records.Add(key);
-		}
-
-		public void BeginHistory(String matchId)
-		{
-			var history = new MatchHistory(matchId);
-			DocumentSession.Store(history);
-			DocumentSession.SaveChanges();
-		}
-
-		private MatchHistory GetHistory(String matchId)
-		{
-			//// Checks for existence without loading the document
-			//var metadata = DocumentSession.Advanced.DocumentStore.DatabaseCommands.Head(matchId);
-			//if (metadata == null)
-			//    return null;
-
-			return DocumentSession.Load<MatchHistory>(matchId);
-		}
-
-		public void UndoLastAction(String id)
-		{
-			//var lastEvent = DocumentSession.Query<StateChangeEvent>()
-			//    .OrderByDescending(e => e.Timestamp)
-			//    .FirstOrDefault(m => m.MatchId == id);
-
-			var lastEvent = (from e in GetEventStreamFor(id) select e).LastOrDefault();
-			if (lastEvent != null)
+			using (var session = _documentStore.OpenSession())
 			{
-				var key = DocumentSession.Advanced.GetDocumentId(lastEvent);
-				DocumentSession.Delete(lastEvent);
-				GetHistory(id).Records.Remove(key);
+				MatchHistory history = session.Load<MatchHistory>(domainEvent.SagaId);
+				if (history == null)
+				{
+					history = new MatchHistory(domainEvent.SagaId);
+					session.Store(history);
+				}
+
+				var eventWrapper = new EventWrapper(domainEvent);
+				session.Store(eventWrapper);
+				string key = session.Advanced.GetDocumentId(eventWrapper);
+				history.Records.Add(key);
+
+				session.SaveChanges();
+			}
+		}
+
+		public void UndoLastAction(String matchId)
+		{
+			using (var session = _documentStore.OpenSession())
+			{
+				MatchHistory matchHistory = session.Load<MatchHistory>(matchId);
+				if (matchHistory == null)
+				{
+					return;
+				}
+
+				EventWrapper lastEvent = session.Load<EventWrapper>(matchHistory.Records).LastOrDefault();
+				if (lastEvent == null)
+				{
+					return;
+				}
+
+				string key = session.Advanced.GetDocumentId(lastEvent);
+				session.Delete(lastEvent);
+				matchHistory.Records.Remove(key);
+
+				session.SaveChanges();
 			}
 		}
 
 		public IList<DomainEvent> GetEventStreamFor(String id)
 		{
-			var history = GetHistory(id);
-			if (history == null)
-				return new List<DomainEvent>();
+			using (var session = _documentStore.OpenSession())
+			{
+				var history = session.Load<MatchHistory>(id);
+				if (history == null)
+					return new List<DomainEvent>();
 
-			IList<string> keys = history.Records;
+				IList<string> keys = history.Records;
 
-			if (keys.Any(k => k == null))
-				return new List<DomainEvent>();
+				if (keys.Any(k => k == null))
+					return new List<DomainEvent>();
 
-			var list = DocumentSession.Load<EventWrapper>(keys);
-			return (from e in list select e.TheEvent).ToList();
-
-			//return DocumentSession
-			//    .Query<StateChangeEvent>()
-			//    .Where(t => t.MatchId == id)
-			//    .OrderBy(t => t.Timestamp);
-		}
-
-		public void Commit()
-		{
-			if (DocumentSession == null)
-				return;
-			DocumentSession.SaveChanges();
-			DocumentSession.Dispose();
+				var list = session.Load<EventWrapper>(keys);
+				return (from e in list select e.TheEvent).ToList();
+			}
 		}
 
 		public void Empty(String id)
 		{
-			MatchHistory history = DocumentSession.Load<MatchHistory>(id);
-
-			if (history == null)
+			using (var session = _documentStore.OpenSession())
 			{
-				return;
-			}
+				MatchHistory history = session.Load<MatchHistory>(id);
 
-			EventWrapper[] events = DocumentSession.Load<EventWrapper>(history.Records);
-			foreach (var @event in events)
-			{
-				if (@event != null)
+				if (history == null)
 				{
-					DocumentSession.Delete(@event);
+					return;
 				}
-			}
 
-			DocumentSession.Delete(history);
-			DocumentSession.SaveChanges();
-			//RavenDbConfig.Instance.DatabaseCommands.DeleteByIndex(
-			//    RavenDbConfig.MyDefaultIndex, new IndexQuery());
+				EventWrapper[] events = session.Load<EventWrapper>(history.Records);
+				foreach (var @event in events)
+				{
+					if (@event != null)
+					{
+						session.Delete(@event);
+					}
+				}
+
+				session.Delete(history);
+				session.SaveChanges();
+			}
 		}
 	}
 }
