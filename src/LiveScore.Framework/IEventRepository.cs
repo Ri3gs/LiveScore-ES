@@ -7,7 +7,7 @@ namespace LiveScore.Framework
 	{
 		void Save(DomainEvent domainEvent);
 		void UndoLastAction(String id);
-		IList<DomainEvent> GetEventStreamFor(String id);
+		IReadOnlyCollection<DomainEvent> GetEventStreamFor(String id);
 		void Empty(String id);
 	}
 }

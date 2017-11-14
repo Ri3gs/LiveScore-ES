@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
-using LiveScore.Framework.Utils;
+using LiveScore.CommandStack.Utils;
 
 namespace LiveScore.CommandStack
 {

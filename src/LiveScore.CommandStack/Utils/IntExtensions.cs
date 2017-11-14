@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LiveScore.Framework.Utils
+namespace LiveScore.CommandStack.Utils
 {
 	public static class IntExtensions
 	{

@@ -66,21 +66,21 @@ namespace LiveScore.Infrastructure
 			}
 		}
 
-		public IList<DomainEvent> GetEventStreamFor(String id)
+		public IReadOnlyCollection<DomainEvent> GetEventStreamFor(String id)
 		{
 			using (var session = _documentStore.OpenSession())
 			{
 				var history = session.Load<MatchHistory>(id);
 				if (history == null)
-					return new List<DomainEvent>();
+					return new List<DomainEvent>().AsReadOnly();
 
 				IList<string> keys = history.Records;
 
 				if (keys.Any(k => k == null))
-					return new List<DomainEvent>();
+					return new List<DomainEvent>().AsReadOnly();
 
 				var list = session.Load<EventWrapper>(keys);
-				return (from e in list select e.TheEvent).ToList();
+				return list.Select(eventWrapper => eventWrapper.TheEvent).ToList().AsReadOnly();
 			}
 		}
 

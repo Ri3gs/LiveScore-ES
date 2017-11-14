@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LiveScore.CommandStack;
 using LiveScore.CommandStack.Events;
@@ -66,15 +67,15 @@ namespace LiveScore.Application.Services.Match
 
 		public MatchViewModel GetCurrentState(String matchId)
 		{
-			var events = _eventRepository.GetEventStreamFor(matchId);
-			var matchInfo = EventHelper.PlayEvents(matchId, events.ToList());
+			IReadOnlyCollection<DomainEvent> events = _eventRepository.GetEventStreamFor(matchId);
+			CommandStack.Match matchInfo = EventHelper.PlayEvents(matchId, events.ToList());
 			return new MatchViewModel(matchInfo);
 		}
 
 		private void UpdateSnapshots(String matchId)
 		{
-			var events = _eventRepository.GetEventStreamFor(matchId);
-			var matchInfo = EventHelper.PlayEvents(matchId, events.ToList());
+			IReadOnlyCollection<DomainEvent> events = _eventRepository.GetEventStreamFor(matchId);
+			CommandStack.Match matchInfo = EventHelper.PlayEvents(matchId, events.ToList());
 
 			var lm = (from m in _dbContext.Matches where m.Id == matchId select m).FirstOrDefault();
 			if (lm == null)
